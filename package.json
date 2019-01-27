@@ -1,0 +1,11 @@
+{
+  "name": "uipath-webhook-receiver",
+  "description": "",
+  "version": "0.1.0",
+  "dependencies": {
+    "serverless-python-requirements": "^4.2.5"
+  },
+  "devDependencies": {
+    "serverless-python-requirements": "^4.2.5"
+  }
+}
