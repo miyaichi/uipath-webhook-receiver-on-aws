@@ -61,9 +61,7 @@ class orchestrator:
             "api_key": self.api_key
         }
         response = requests.get(
-            self.url + "/odata/Releases",
-            headers=headers,
-            params=params)
+            self.url + "/odata/Releases", headers=headers, params=params)
         if response.status_code == 200:
             if response.json()["@odata.count"] > 0:
                 self.release_key = response.json()["value"][0]["Key"]

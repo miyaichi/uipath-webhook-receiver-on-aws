@@ -6,10 +6,10 @@ provider:
   region: ap-northeast-1
   environment:
     orchestrator_url: ${file(config.json):orchestrator_url}
-    tenancy_name: ${file(config.json):tenancy_name}
-    username: ${file(config.json):username}
-    password: ${file(config.json):password}
-    api_key: ${file(config.$son):api_key}
+    tenancy_name: ${file(config.json):orchestrator_tenancy_name}
+    username: ${file(config.json):orchestrator_username}
+    password: ${file(config.json):orchestrator_password}
+    api_key: ${file(config.$son):orchestrator_api_key}
     queue_name: ${file(config.json):queue_name}
     process_name: ${file(config.json):process_name}
 

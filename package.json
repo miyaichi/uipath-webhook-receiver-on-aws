@@ -1,6 +1,6 @@
 {
   "name": "uipath-webhook-receiver",
-  "description": "",
+  "description": "Receives Webhook and orders Orchestrator to start the job",
   "version": "0.1.0",
   "dependencies": {
     "serverless-python-requirements": "^4.2.5"
