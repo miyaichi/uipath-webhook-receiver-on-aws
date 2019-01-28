@@ -1,5 +1,7 @@
 # uipath-webhook-receiver-on-aws
 
+ユーザーとのインタラクションからUiPathのジョブを起動する仕組みを提供します。
+
 ## Use case
 
 ### Ticket Service Integration
@@ -50,3 +52,4 @@ $ serverless deploy [--stage production]
 
 * ServiceNow integration
 * Wrike integration
+* Orchestrator Queue integration
