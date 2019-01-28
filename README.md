@@ -50,4 +50,3 @@ $ serverless deploy [--stage production]
 
 * ServiceNow integration
 * Wrike integration
-* Slack integration
