@@ -17,10 +17,11 @@ def start_jobs(process_name):
 class orchestrator:
     def __init__(self):
         self.url = os.environ["orchestrator_url"]
-        self.tenancy_name = os.environ["tenancy_name"]
-        self.username = os.environ["username"]
-        self.password = os.environ["password"]
-        self.api_key = os.environ["api_key"]
+        self.tenancy_name = os.environ["orchestrator_tenancy_name"]
+        self.username = os.environ["orchestrator_username"]
+        self.password = os.environ["orchestrator_password"]
+        self.api_key = os.environ["orchestrator_api_key"]
+        self.queue_name = os.environ["orchestrator_queue_name"]
         self.token = None
         self.release_key = None
         self.job_id = None

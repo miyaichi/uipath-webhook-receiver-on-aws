@@ -9,7 +9,7 @@ def handler(event, context):
     if "process_name" in event["placementInfo"]["attributes"]:
         process_name = event["placementInfo"]["attributes"]["process_name"]
 
-    if (process_name):
+    if (not process_name):
         body = {"message": "process_name not found"}
         response = {"statusCode": 200, "body": json.dumps(body)}
         return response

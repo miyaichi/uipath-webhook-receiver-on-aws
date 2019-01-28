@@ -6,12 +6,13 @@ provider:
   region: ap-northeast-1
   environment:
     orchestrator_url: ${file(config.json):orchestrator_url}
-    tenancy_name: ${file(config.json):orchestrator_tenancy_name}
-    username: ${file(config.json):orchestrator_username}
-    password: ${file(config.json):orchestrator_password}
-    api_key: ${file(config.$son):orchestrator_api_key}
-    queue_name: ${file(config.json):queue_name}
+    orchestrator_tenancy_name: ${file(config.json):orchestrator_tenancy_name}
+    orchestrator_username: ${file(config.json):orchestrator_username}
+    orchestrator_password: ${file(config.json):orchestrator_password}
+    orchestrator_api_key: ${file(config.$son):orchestrator_api_key}
+    orchestrator_queue_name: ${file(config.json):orchestrator_queue_name}
     process_name: ${file(config.json):process_name}
+    slack_token: ${file(config.json):slack_token}
 
 plugins:
   - serverless-python-requirements
@@ -19,6 +20,17 @@ plugins:
 functions:
   backlog:
     handler: handler.backlog_handler
+    events:
+      - http:
+          path: uipath-webhook-receiver/backlog
+          method: post
+
   iot_button:
     handler: handler.iot_button_handler
 
+  slack:
+    handler: handler.slash_command_handler
+    events:
+      - http:
+          path: uipath-webhook-receiver/slash_command
+          method: post
