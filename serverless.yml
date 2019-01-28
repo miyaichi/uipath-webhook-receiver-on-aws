@@ -25,6 +25,13 @@ functions:
           path: uipath-webhook-receiver/backlog
           method: post
 
+  http:
+    handler: handler.http_handler
+    events:
+      - http:
+          path: uipath-webhook-receiver/http
+          method: post
+
   iot_button:
     handler: handler.iot_button_handler
 
