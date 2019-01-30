@@ -12,8 +12,10 @@ provider:
     orchestrator_api_key: ${file(config.$son):orchestrator_api_key}
     orchestrator_queue_name: ${file(config.json):orchestrator_queue_name}
     process_name: ${file(config.json):process_name}
-    slack_token: ${file(config.json):slack_token}
     hangout_webhook_url: ${file(config.json):hangout_webhook_url}
+    backlog_process_name: ${file(config.json):process_name}
+    http_process_name: ${file(config.json):process_name}
+
 
 plugins:
   - serverless-python-requirements

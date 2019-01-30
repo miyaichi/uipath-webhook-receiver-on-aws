@@ -8,7 +8,7 @@ valid_activities = {
     1: "課題の追加",
     2: "課題の更新",
     3: "課題にコメント",
-    #4: "課題の削除",
+    #    4: "課題の削除",
     #    5: "Wikiを追加",
     #    6: "Wikiを更新",
     #    7: "Wikiを削除",
@@ -35,9 +35,9 @@ valid_activities = {
 
 
 def handler(event, context):
-    process_name = os.environ["process_name"]
+    process_name = os.environ["backlog_process_name"]
     if (not process_name):
-        body = {"message": "process_name not found"}
+        body = {"message": "process name not found"}
         response = {"statusCode": 200, "body": json.dumps(body)}
         return response
 

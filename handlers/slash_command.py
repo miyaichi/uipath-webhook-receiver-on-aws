@@ -20,6 +20,10 @@ def handler(event, context):
 #   text = params["text"][0]
 
     process_name = params["text"][0]
+    if (not process_name):
+        message = "process name not found"
+        response = {"statusCode": 200, "body": message}
+        return response
 
     message = uipath.start_jobs(process_name)
     response = {"statusCode": 200, "body": message}
