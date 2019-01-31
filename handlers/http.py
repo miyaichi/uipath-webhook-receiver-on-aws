@@ -5,18 +5,9 @@ import uipath
 from jinja2 import Environment, FileSystemLoader
 from urlparse import parse_qs
 
-import logging
-
-
 
 def handler(event, context):
     templates = Environment(loader=FileSystemLoader('./templates', encoding='utf8'))
-    
-    
-    log = logging.getLogger()
-    log.setLevel(logging.DEBUG)
-    log.debug("body {}".format(event["body"]))
-
 
     process_name = None
     if event["body"] is not None:

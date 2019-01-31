@@ -56,7 +56,7 @@ $ serverless deploy [--stage production]
 
 ## Configuration
 
-設定はconfig.jsonに記載します。また、AWS Lambdaの環境変数設定で値を変更することができます。
+設定はconfig.jsonに記載します。また、AWS Lambdaの環境変数設定で値を変更することができます。IoT Enterprise Buttonは、デバイスのプレイスメントの属性でプロセス名（属性の名前 process_name）を指定します。
 
 ```
 $ cat config.json
