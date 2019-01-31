@@ -5,22 +5,30 @@ import uipath
 from jinja2 import Environment, FileSystemLoader
 from urlparse import parse_qs
 
+import logging
+
+
 
 def handler(event, context):
-    params = parse_qs(event["body"])
+    templates = Environment(loader=FileSystemLoader('./templates', encoding='utf8'))
+    
+    
+    log = logging.getLogger()
+    log.setLevel(logging.DEBUG)
+    log.debug("body {}".format(event["body"]))
 
-    env = Environment(loader=FileSystemLoader('./templates', encoding='utf8'))
-    tpl = env.get_template('response.tpl.html')
 
     process_name = None
-    if "process_name" in params:
-        process_name = params["process_name"][0]
+    if event["body"] is not None:
+        params = parse_qs(event["body"])
+        if "process_name" in params:
+            process_name = params["process_name"][0]
 
     available_processes = [
         s.strip() for s in os.environ["available_processes"].split(',')
     ]
     if (not process_name or process_name not in available_processes):
-        tpl = env.get_template('request.tpl.html')
+        tpl = templates.get_template('request.tpl.html')
         url = "https://" + event["requestContext"]["domainName"] + event[
             "requestContext"]["path"]
         response = {
@@ -38,7 +46,7 @@ def handler(event, context):
         return response
 
     message = uipath.start_jobs(process_name)
-    tpl = env.get_template('response.tpl.html')
+    tpl = templates.get_template('response.tpl.html')
     response = {
         "statusCode": 200,
         "headers": {

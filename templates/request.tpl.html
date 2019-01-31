@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html>
-<title Start Job>
 <head>
-<style>
-  body {
-    height: 100vh;
-    margin: 0;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: Helvetica neue, roboto;
-  }
-  h1 {
-    color: #bdbdbd;
-    font-weight: 300;
-  }
-</style>
+  <title>Start Job</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: Helvetica neue, roboto;
+    }
+    h1 {
+      color: #bdbdbd;
+      font-weight: 300;
+    }
+  </style>
 </head>
 <body>
 
 <h1>Startn Job</h1>
-  <form action="{{ uri }}" method="POST">
+  <form action="{{ url }}" method="POST">
     <p>Please select process name to start</p>
     <select name="process_name" size="5">
       {% for process in available_processes %}
