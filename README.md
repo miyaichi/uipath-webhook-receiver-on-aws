@@ -56,60 +56,109 @@ $ serverless deploy [--stage production]
 
 ## Configuration
 
-設定は、config.jsonに記載します。また、AWS Lambdaの環境変数設定で変更することが可能です。
+設定はconfig.jsonに記載します。また、AWS Lambdaの環境変数設定で値を変更することができます。
 
 ```
 $ cat config.json
 {
-    "orchestrator_url": "orchestrator url",
-    "orchestrator_tenancy_name": "orchestrator tenancy name",
-    "orchestrator_username": "orchestrator user name",
-    "orchestrator_password": "orchestrator password",
-    "orchestrator_api_key": "orchestrator api_key",
-    "orchestrator_queue_name": "orchestrator queue name",
+    "orchestrator": {
+        "url": "",
+        "tenancy_name": "",
+        "username": "",
+        "password": "",
+        "api_key": "",
+        "queue_name": ""
+    },
 
-    "backlog_process_name": "process name for backlog",
+    "backlog": {
+        "process_name": ""
+    },
 
-    "hangout_webhook_url": "google hangouts chat webhook url",
+    "hangout": {
+        "webhook_url": ""
+    },
 
-    "slack_token": "slack token"
+    "http": {
+        "available_processes": ""
+    },
+
+    "slack": {
+        "verification_token": "",
+        "available_processes": ""
+    }
 }
 ```
 
 ### orchestrator
 
-| Name                      | Description |
-| ------------------------- | ----------- |
-| orchestrator_url          | URL         |
-| orchestrator_tenancy_name | テナント名  |
-| orchestrator_username     | ユーザー名  |
-| orchestrator_password     | パスワード  |
-| orchestrator_api_key      | API Key     |
+```
+"orchestrator": {
+    "url": "",
+    "tenancy_name": "",
+    "username": "",
+    "password": "",
+    "api_key": "",
+    "queue_name": ""
+}
+```
+
+| Name         | Description |
+| ------------ | ----------- |
+| url          | URL         |
+| tenancy_name | テナント名  |
+| username     | ユーザー名  |
+| password     | パスワード  |
+| api_key      | API Key     |
 
 ### backlog
 
-| Name                 | Description                                |
-| -------------------- | ------------------------------------------ |
-| backlog_process_name | BacklogのWebhookを受信後、起動するプロセス |
+```
+"backlog": {
+    "process_name": ""
+}
+```
+
+| Name         | Description                                |
+| ------------ | ------------------------------------------ |
+| process_name | BacklogのWebhookを受信後、起動するプロセス |
 
 ### Google Hangouts Chat
 
-| Name                 | Description                                |
-| -------------------- | ------------------------------------------ |
-| hangout_webhook_url | Google Hangouts Chatに登録したWebhookURL |
+```
+"hangout": {
+    "webhook_url": ""
+}
+```
+
+| Name        | Description                              |
+| ----------- | ---------------------------------------- |
+| webhook_url | Google Hangouts Chatに登録したWebhookURL |
 
 ### http
 
-| Name                 | Description                                |
-| -------------------- | ------------------------------------------ |
-| http_available_processes | 有効なプロセス名リスト（カンマ区切り） |
+```
+"http": {
+    "available_processes": ""
+}
+```
+
+| Name                | Description                            |
+| ------------------- | -------------------------------------- |
+| available_processes | 有効なプロセス名リスト（カンマ区切り） |
 
 ### Slack
 
+```
+"slack": {
+    "verification_token": "",
+    "available_processes": ""
+}
+```
+
 | Name                      | Description                                |
 | ------------------------- | ------------------------------------------ |
-| slack_verification_token  | slack app の verification token |
-| slack_available_processes | 有効なプロセス名リスト（カンマ区切り） |
+| verification_token  | slack app の verification token |
+| available_processes | 有効なプロセス名リスト（カンマ区切り） |
 
 ## To Do
 

@@ -6,7 +6,7 @@ import uipath
 
 
 def handler(event, context):
-    url = os.environ["hangout_webhook_url"]
+    url = os.environ["webhook_url"]
 
     process_name = event["body"]
     if (not process_name):

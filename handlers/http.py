@@ -17,7 +17,7 @@ def handler(event, context):
         process_name = params["process_name"][0]
 
     available_processes = [
-        s.strip() for s in os.environ["http_available_processes"].split(',')
+        s.strip() for s in os.environ["available_processes"].split(',')
     ]
     if (not process_name or process_name not in available_processes):
         tpl = env.get_template('request.tpl.html')

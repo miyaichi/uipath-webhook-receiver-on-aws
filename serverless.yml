@@ -5,17 +5,12 @@ provider:
   runtime: python2.7
   region: ap-northeast-1
   environment:
-    orchestrator_url: ${file(config.json):orchestrator_url}
-    orchestrator_tenancy_name: ${file(config.json):orchestrator_tenancy_name}
-    orchestrator_username: ${file(config.json):orchestrator_username}
-    orchestrator_password: ${file(config.json):orchestrator_password}
-    orchestrator_api_key: ${file(config.$son):orchestrator_api_key}
-    orchestrator_queue_name: ${file(config.json):orchestrator_queue_name}
-    backlog_process_name: ${file(config.json):backlog_process_name}
-    http_available_processes: ${file(config.json):http_available_processes}
-    hangout_webhook_url: ${file(config.json):hangout_webhook_url}
-    slack_verification_token: ${file(config.json):slack_verification_token}
-    slack_available_processes: ${file(config.json):slack_available_processes}
+    orchestrator_url: ${file(config.json):orchestrator.url}
+    orchestrator_tenancy_name: ${file(config.json):orchestrator.tenancy_name}
+    orchestrator_username: ${file(config.json):orchestrator.username}
+    orchestrator_password: ${file(config.json):orchestrator.password}
+    orchestrator_api_key: ${file(config.$son):orchestrator.api_key}
+    orchestrator_queue_name: ${file(config.json):orchestrator.queue_name}
 
 plugins:
   - serverless-python-requirements
@@ -23,6 +18,8 @@ plugins:
 functions:
   backlog:
     handler: handler.backlog_handler
+    environment:
+      process_name: ${file(config.json):backlog.process_name}
     events:
       - http:
           path: uipath-webhook-receiver/backlog
@@ -30,6 +27,8 @@ functions:
 
   hagout_chat:
     handler: handler.hagout_chat_handler
+    environment:
+      webhook_url: ${file(config.json):hangout.webhook_url}
     events:
       - http:
           path: uipath-webhook-receiver/hagout_chat
@@ -37,7 +36,12 @@ functions:
 
   http:
     handler: handler.http_handler
+    environment:
+      available_processes: ${file(config.json):http.available_processes}
     events:
+      - http:
+          path: uipath-webhook-receiver/http
+          method: get
       - http:
           path: uipath-webhook-receiver/http
           method: post
@@ -47,6 +51,9 @@ functions:
 
   slack:
     handler: handler.slash_command_handler
+    environment:
+      verification_token: ${file(config.json):slack.verification_token}
+      available_processes: ${file(config.json):slack.available_processes}
     events:
       - http:
           path: uipath-webhook-receiver/slash_command
