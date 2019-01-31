@@ -14,8 +14,6 @@
 ### Chat Service Integration
 ユーザーがチャットサービスでジョブの起動を依頼し、それをボットで検知してOrchestratorからジョブを起動します。起動したいプロセスをユーザーが自身で指定することで、タイムリーなサービス提供が可能となります。
 
-現在の実装では、指定されたプロセスを実行するだけですが、ユーザーとのインタラクションを取るBotに修正することも可能です。
-
 ![Use Case #2](https://user-images.githubusercontent.com/129797/51886557-a6802b80-23d3-11e9-9e9d-fc89ebc4d6e1.png)
 
 ### IoT Enterprise Button Integration
@@ -24,11 +22,9 @@
 ![Use Case #3](https://user-images.githubusercontent.com/129797/51886565-ab44df80-23d3-11e9-8523-55e7e41ee6b4.png)
 
 ### HTML Form Integration
-HTMLフォームをPOSTすることで、Orchestratorからジョブを起動します。どの起動できるプロセスの管理、起動する権限の管理をWebページのアクセス権限と連動して管理することができます。
+HTMLフォームをGET/POSTすることで、Orchestratorからジョブを起動します。起動できるプロセス、起動する権限をWebページのアクセス権限と連動して管理することができます。
 
 ![Use Case #4](https://user-images.githubusercontent.com/129797/51886570-ac760c80-23d3-11e9-9708-c313aaee4c94.png)
-
-
 
 ## Path to deploy
 
@@ -155,13 +151,14 @@ $ cat config.json
 }
 ```
 
-| Name                      | Description                                |
-| ------------------------- | ------------------------------------------ |
-| verification_token  | slack app の verification token |
+| Name                | Description                            |
+| ------------------- | -------------------------------------- |
+| verification_token  | slack app の verification token        |
 | available_processes | 有効なプロセス名リスト（カンマ区切り） |
 
 ## To Do
 
+* Chatwork integration
 * ServiceNow integration
 * Wrike integration
 * Orchestrator Queue integration
