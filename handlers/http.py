@@ -9,12 +9,12 @@ from urlparse import parse_qs
 def handler(event, context):
     params = parse_qs(event["body"])
 
-    process_name = ""
-    if "process_name" in params:
-        process_name = params["process_name"][0]
-
     env = Environment(loader=FileSystemLoader('./templates', encoding='utf8'))
     tpl = env.get_template('response.tpl.html')
+
+    process_name = None
+    if "process_name" in params:
+        process_name = params["process_name"][0]
 
     if (not process_name):
         message = "process name not found"

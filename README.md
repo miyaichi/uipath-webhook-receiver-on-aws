@@ -100,9 +100,10 @@ $ cat config.json
 
 ### Slack
 
-| Name                 | Description                                |
-| -------------------- | ------------------------------------------ |
-| slack_token | Slack API Token |
+| Name                      | Description                                |
+| ------------------------- | ------------------------------------------ |
+| slack_verification_token  | slack app の verification token |
+| slack_available_processes | 有効なプロセス名リスト（カンマ区切り） |
 
 ## To Do
 
