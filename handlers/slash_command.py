@@ -18,7 +18,9 @@ def handler(event, context):
     if "text" in params:
         process_name = params["text"][0]
 
-    available_processes = [s.strip() for s in os.environ["slack_available_processes"].split(',')]
+    available_processes = [
+        s.strip() for s in os.environ["slack_available_processes"].split(',')
+    ]
     if (not process_name or process_name not in available_processes):
         message = "available process name: " + ", ".join(available_processes)
         response = {"statusCode": 200, "body": message}

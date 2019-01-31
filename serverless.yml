@@ -12,6 +12,7 @@ provider:
     orchestrator_api_key: ${file(config.$son):orchestrator_api_key}
     orchestrator_queue_name: ${file(config.json):orchestrator_queue_name}
     backlog_process_name: ${file(config.json):backlog_process_name}
+    http_available_processes: ${file(config.json):http_available_processes}
     hangout_webhook_url: ${file(config.json):hangout_webhook_url}
     slack_verification_token: ${file(config.json):slack_verification_token}
     slack_available_processes: ${file(config.json):slack_available_processes}

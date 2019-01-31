@@ -98,6 +98,12 @@ $ cat config.json
 | -------------------- | ------------------------------------------ |
 | hangout_webhook_url | Google Hangouts Chatに登録したWebhookURL |
 
+### http
+
+| Name                 | Description                                |
+| -------------------- | ------------------------------------------ |
+| http_available_processes | 有効なプロセス名リスト（カンマ区切り） |
+
 ### Slack
 
 | Name                      | Description                                |

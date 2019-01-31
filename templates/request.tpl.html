@@ -23,7 +23,7 @@
   <form action="{{ uri }}" method="POST">
     <p>Please select process name to start</p>
     <select name="process_name" size="5">
-      {% for process in available processes %}
+      {% for process in available_processes %}
         <option value="{{ process }}">{{ process }}</option>
       {% endfor %}
     </select>

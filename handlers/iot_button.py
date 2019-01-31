@@ -5,7 +5,7 @@ import uipath
 
 
 def handler(event, context):
-    process_name = ""
+    process_name = None
     if "process_name" in event["placementInfo"]["attributes"]:
         process_name = event["placementInfo"]["attributes"]["process_name"]
 
