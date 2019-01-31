@@ -56,6 +56,53 @@ $ serverless deploy [--stage production]
 
 ## Configuration
 
+設定は、config.jsonに記載します。また、AWS Lambdaの環境変数設定で変更することが可能です。
+
+```
+$ cat config.json
+{
+    "orchestrator_url": "orchestrator url",
+    "orchestrator_tenancy_name": "orchestrator tenancy name",
+    "orchestrator_username": "orchestrator user name",
+    "orchestrator_password": "orchestrator password",
+    "orchestrator_api_key": "orchestrator api_key",
+    "orchestrator_queue_name": "orchestrator queue name",
+
+    "backlog_process_name": "process name for backlog",
+
+    "hangout_webhook_url": "google hangouts chat webhook url",
+
+    "slack_token": "slack token"
+}
+```
+
+### orchestrator
+
+| Name                      | Description |
+| ------------------------- | ----------- |
+| orchestrator_url          | URL         |
+| orchestrator_tenancy_name | テナント名  |
+| orchestrator_username     | ユーザー名  |
+| orchestrator_password     | パスワード  |
+| orchestrator_api_key      | API Key     |
+
+### backlog
+
+| Name                 | Description                                |
+| -------------------- | ------------------------------------------ |
+| backlog_process_name | BacklogのWebhookを受信後、起動するプロセス |
+
+### Google Hangouts Chat
+
+| Name                 | Description                                |
+| -------------------- | ------------------------------------------ |
+| hangout_webhook_url | Google Hangouts Chatに登録したWebhookURL |
+
+### Slack
+
+| Name                 | Description                                |
+| -------------------- | ------------------------------------------ |
+| slack_token | Slack API Token |
 
 ## To Do
 
