@@ -7,7 +7,8 @@ from urlparse import parse_qs
 
 
 def handler(event, context):
-    templates = Environment(loader=FileSystemLoader('./templates', encoding='utf8'))
+    templates = Environment(
+        loader=FileSystemLoader('./templates', encoding='utf8'))
 
     process_name = None
     if event["body"] is not None:
