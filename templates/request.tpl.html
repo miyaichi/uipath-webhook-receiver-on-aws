@@ -20,15 +20,15 @@
 <body>
 
 <h1>Startn Job</h1>
-  <form action="{{ url }}" method="POST">
-    <p>Please select process name to start</p>
-    <select name="process_name" size="5">
-      {% for process in available_processes %}
-        <option value="{{ process }}">{{ process }}</option>
-      {% endfor %}
-    </select>
-    <p><input type="submit" value="Start"><p>
-  </form>
+<form action="{{ url }}" method="POST">
+  <p>Please select process name to start</p>
+  <select name="process_name" size="5">
+    {% for process in available_processes %}
+      <option value="{{ process }}">{{ process }}</option>
+    {% endfor %}
+  </select>
+  <p><input type="submit" value="Start"><p>
+</form>
 
 </body>
 </html>
