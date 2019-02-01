@@ -5,6 +5,7 @@ provider:
   runtime: python2.7
   region: ap-northeast-1
   environment:
+    language: ${file(config.json):language}
     orchestrator_url: ${file(config.json):orchestrator.url}
     orchestrator_tenancy_name: ${file(config.json):orchestrator.tenancy_name}
     orchestrator_username: ${file(config.json):orchestrator.username}

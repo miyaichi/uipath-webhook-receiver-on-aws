@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import gettext
 import json
 import os
 import uipath
@@ -34,28 +35,43 @@ valid_activities = {
 }
 
 
+def _(message):
+    return message
+
+
 def handler(event, context):
     process_name = os.environ["process_name"]
     if (not process_name):
-        body = {"message": "process name not found"}
-        response = {"statusCode": 200, "body": json.dumps(body)}
+        response = {
+            "statusCode": 200,
+            "body": json.dumps({
+                "message": _("process_name not found")
+            })
+        }
         return response
 
+    activities = json.loads(event["body"])
+    if isinstance(activities, dict):
+        activities = [activities]
+
     issues = []
-    activity = json.loads(event["body"])
-    if activity["type"] in valid_activities:
-        issues.append({
-            "project_id": activity["project"]["id"],
-            "issue_id": activity["id"],
-            "type_id": activity["type"]
-        })
+    for activity in activities:
+        if activity["type"] in valid_activities:
+            issues.append({
+                "project_id": activity["project"]["id"],
+                "issue_id": activity["id"],
+                "type_id": activity["type"]
+            })
 
     if len(issues) == 0:
-        body = {"message": "This webhook was ignored"}
-        response = {"statusCode": 200, "body": json.dumps(body)}
+        response = {
+            "statusCode": 200,
+            "body": json.dumps({
+                "message": _("This webhook was ignored")
+            })
+        }
         return response
 
     message = uipath.start_jobs(process_name)
-    body = {"message": message}
-    response = {"statusCode": 200, "body": json.dumps(body)}
+    response = {"statusCode": 200, "body": json.dumps({"message": message})}
     return response

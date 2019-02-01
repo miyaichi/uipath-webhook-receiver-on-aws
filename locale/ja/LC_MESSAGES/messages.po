@@ -1,0 +1,45 @@
+#
+# SOME DESCRIPTIVE TITLE
+# This file is distributed under the same license as the PACKAGE package.
+# Yoshihiko Miyaichi <miyaichi@gmail.com>, 2019.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE 1.0\n"
+"POT-Creation-Date: 2019-02-01 20:18+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Lingua 4.13\n"
+
+
+msgid "{} can not started. message is {}"
+msgstr "{} を開始できません。メッセージは {} です"
+
+msgid "{} failed"
+msgstr "{} が失敗しました"
+
+msgid "{} started. Job ID is {}"
+msgstr "{} を開始しました。ジョブIDは {} です"
+
+msgid "Available process name are {}"
+msgstr "有効なプロセス名は {} です"
+
+msgid "Please select process to start"
+msgstr "開始したいプロセスを選んでください"
+
+msgid "process_name not found"
+msgstr "process_nameが見つかりません"
+
+msgid "Relasse not found"
+msgstr "リリースが見つかりません"
+
+msgid "Request token does not match"
+msgstr "リクエストトークンが一致しません"
+
+msgid "This webhook was ignored"
+msgstr "このwebhookは無視しました"

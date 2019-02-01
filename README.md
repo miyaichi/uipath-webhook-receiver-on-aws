@@ -57,6 +57,8 @@ $ serverless deploy [--stage production]
 ```
 $ cat config.json
 {
+    "language": "ja",
+
     "orchestrator": {
         "url": "",
         "tenancy_name": "",
@@ -85,9 +87,7 @@ $ cat config.json
     }
 }
 ```
-
-### orchestrator
-
+### language
 ```
 "orchestrator": {
     "url": "",
@@ -99,13 +99,15 @@ $ cat config.json
 }
 ```
 
-| Name         | Description |
-| ------------ | ----------- |
-| url          | URL         |
-| tenancy_name | テナント名  |
-| username     | ユーザー名  |
-| password     | パスワード  |
-| api_key      | API Key     |
+### orchestrator
+
+```
+"language": "ja"
+```
+
+| Name     | Description          |
+| -------- | -------------------- |
+| language | メッセージの表示言語 |
 
 ### backlog
 

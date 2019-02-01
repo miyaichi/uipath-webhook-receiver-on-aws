@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
+import gettext
 import json
 import logging
+import os
 
+languages = [os.environ["language"]]
+trans = gettext.translation(
+    'messages', localedir='locale', languages=languages, fallback=True)
+trans.install()
 
 def monitoring(func):
     def decorate(event, context):

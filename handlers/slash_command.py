@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import gettext
 import json
 import os
 import uipath
@@ -10,7 +11,7 @@ def handler(event, context):
 
     token = params["token"][0]
     if token != os.environ["verification_token"]:
-        message = "request token does not match"
+        message = _("Request token does not match")
         response = {"statusCode": 200, "body": message}
         return response
 
@@ -22,7 +23,8 @@ def handler(event, context):
         s.strip() for s in os.environ["available_processes"].split(',')
     ]
     if (not process_name or process_name not in available_processes):
-        message = "available process name: " + ", ".join(available_processes)
+        message = _("Available process name are {}").format(
+            ", ".join(available_processes))
         response = {"statusCode": 200, "body": message}
         return response
 

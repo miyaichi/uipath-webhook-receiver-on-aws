@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import gettext
 import json
 import os
 import requests
@@ -6,12 +7,19 @@ import uipath
 
 
 def handler(event, context):
+    languages = [os.environ["language"]]
+    trans = gettext.translation(
+        'messages', localedir='locale', languages=languages, fallback=True)
+    _ = trans.gettext
+
     body = json.loads(event["body"])
-    if body["token"] != os.environ["verification_token"]:
+
+    token = body["token"]
+    if token != os.environ["verification_token"]:
         response = {
             "statusCode": 200,
             "body": json.dumps({
-                "text": "request token does not match"
+                "text": _("Request token does not match")
             })
         }
         return response
@@ -27,7 +35,8 @@ def handler(event, context):
             "body":
             json.dumps({
                 "text":
-                "available process name: " + ", ".join(available_processes)
+                _("Available process name are {}").format(
+                    ", ".join(available_processes))
             })
         }
         return response
