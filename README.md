@@ -71,7 +71,8 @@ $ cat config.json
     },
 
     "hangout": {
-        "webhook_url": ""
+        "verification_token": "",
+        "available_processes": ""
     },
 
     "http": {
@@ -122,13 +123,15 @@ $ cat config.json
 
 ```
 "hangout": {
-    "webhook_url": ""
+    "verification_token": "",
+    "available_processes": ""
 }
 ```
 
-| Name        | Description                              |
-| ----------- | ---------------------------------------- |
-| webhook_url | Google Hangouts Chatに登録したWebhookURL |
+| Name                | Description                              |
+| ------------------- | ---------------------------------------- |
+| verification_token  | 確認トークン                             |
+| available_processes | 有効なプロセス名リスト（カンマ区切り）   |
 
 ### http
 

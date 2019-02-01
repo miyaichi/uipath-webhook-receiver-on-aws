@@ -6,24 +6,32 @@ import uipath
 
 
 def handler(event, context):
-    url = os.environ["webhook_url"]
+    body = json.loads(event["body"])
+    if body["token"] != os.environ["verification_token"]:
+        response = {
+            "statusCode": 200,
+            "body": json.dumps({
+                "text": "request token does not match"
+            })
+        }
+        return response
 
-    process_name = event["body"]
-    if (not process_name):
-        message = "process name not found"
-        headers = {"Content-Type": "application/json; charset=UTF-8"}
-        response = requests.post(
-            url, json.dumps({
-                "text": message
-            }), headers=headers)
-        response = {"statusCode": 200, "body": message}
+    process_name = body["message"]["argumentText"].strip()
+    available_processes = [
+        s.strip() for s in os.environ["available_processes"].split(',')
+    ]
+    if (not process_name or process_name not in available_processes):
+        response = {
+            "statusCode":
+            200,
+            "body":
+            json.dumps({
+                "text":
+                "available process name: " + ", ".join(available_processes)
+            })
+        }
         return response
 
     message = uipath.start_jobs(process_name)
-    headers = {"Content-Type": "application/json; charset=UTF-8"}
-    response = requests.post(
-        url, json.dumps({
-            "text": message
-        }), headers=headers)
-    response = {"statusCode": 200, "body": message}
+    response = {"statusCode": 200, "body": json.dumps({"text": message})}
     return response

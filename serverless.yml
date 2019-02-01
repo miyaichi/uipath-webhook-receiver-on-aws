@@ -28,7 +28,8 @@ functions:
   hagout_chat:
     handler: handler.hagout_chat_handler
     environment:
-      webhook_url: ${file(config.json):hangout.webhook_url}
+      available_processes: ${file(config.json):hangout.available_processes}
+      token: ${file(config.json):hangout.verification_token}
     events:
       - http:
           path: uipath-webhook-receiver/hagout_chat
