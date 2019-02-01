@@ -7,11 +7,6 @@ import uipath
 
 
 def handler(event, context):
-    languages = [os.environ["language"]]
-    trans = gettext.translation(
-        'messages', localedir='locale', languages=languages, fallback=True)
-    _ = trans.gettext
-
     body = json.loads(event["body"])
 
     token = body["token"]

@@ -35,10 +35,6 @@ valid_activities = {
 }
 
 
-def _(message):
-    return message
-
-
 def handler(event, context):
     process_name = os.environ["process_name"]
     if (not process_name):
