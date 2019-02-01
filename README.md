@@ -19,7 +19,7 @@
 ### IoT Enterprise Button Integration
 ユーザーに渡したAWS IoT Enterprise Buttonを押すことで、Orchestratorからジョブを起動します。ボタンを押すだけなので、操作が簡単であり、また、物理的なデバイスとジョブの起動権限を紐づけているので、権限管理がやりやすいです。
 
-![Use Case #3](https://user-images.githubusercontent.com/129797/51886565-ab44df80-23d3-11e9-8523-55e7e41ee6b4.png)
+![Use Case #3](https://user-images.githubusercontent.com/129797/52123230-cbd99780-2668-11e9-8f90-704778b81d72.png)
 
 ### HTML Form Integration
 HTMLフォームをGET/POSTすることで、Orchestratorからジョブを起動します。起動できるプロセス、起動する権限をWebページのアクセス権限と連動して管理することができます。
