@@ -15,8 +15,9 @@ def monitoring(func):
         log = logging.getLogger()
         log.setLevel(logging.DEBUG)
         log.debug("Received event {}".format(json.dumps(event)))
-        log.debug("Received body {}".format(
-            json.dumps(json.loads(event["body"]))))
+        if event["body"]:
+            log.debug("Received body {}".format(
+                json.dumps(json.loads(event["body"]))))
         response = func(event, context)
         log.debug("Response {}".format(json.dumps(response)))
         return response
