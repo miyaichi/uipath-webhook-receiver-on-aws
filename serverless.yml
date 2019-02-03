@@ -20,7 +20,7 @@ functions:
   backlog:
     handler: handler.backlog_handler
     environment:
-      process_name: ${file(config.json):backlog.process_name}
+      process_name: ${file(config.json):handler.backlog.process_name}
     events:
       - http:
           path: uipath-webhook-receiver/backlog
@@ -29,44 +29,54 @@ functions:
   github:
     handler: handler.github_handler
     environment:
-      secret: ${file(config.json):github.secret}
-      process_name: ${file(config.json):github.process_name}
+      secret: ${file(config.json):handler.github.secret}
+      process_name: ${file(config.json):handler.github.process_name}
     events:
       - http:
           path: uipath-webhook-receiver/github
           method: post
   
-  hagout_chat:
-    handler: handler.hagout_chat_handler
+  google_hagouts:
+    handler: handler.google_hagouts_handler
     environment:
-      available_processes: ${file(config.json):hangout.available_processes}
-      token: ${file(config.json):hangout.verification_token}
+      available_processes: ${file(config.json):handler.google_hangouts.available_processes}
+      token: ${file(config.json):handler.google_hangouts.verification_token}
     events:
       - http:
-          path: uipath-webhook-receiver/hagout_chat
+          path: uipath-webhook-receiver/google_hagouts
           method: post
 
-  http:
-    handler: handler.http_handler
+  html_form:
+    handler: handler.html_form_handler
     environment:
-      available_processes: ${file(config.json):http.available_processes}
+      available_processes: ${file(config.json):handler.html_form.available_processes}
     events:
       - http:
-          path: uipath-webhook-receiver/http
+          path: uipath-webhook-receiver/html_form
           method: get
       - http:
-          path: uipath-webhook-receiver/http
+          path: uipath-webhook-receiver/html_form
           method: post
 
   iot_button:
     handler: handler.iot_button_handler
 
-  slack:
-    handler: handler.slash_command_handler
+  orchestrator:
+    handler: handler.orchestrator_handler
     environment:
-      verification_token: ${file(config.json):slack.verification_token}
-      available_processes: ${file(config.json):slack.available_processes}
+      secret: ${file(config.json):handler.orchestrator.secret}
+      process_name: ${file(config.json):handler.orchestrator.process_name}
     events:
       - http:
-          path: uipath-webhook-receiver/slash_command
+          path: uipath-webhook-receiver/orchestrator
+          method: post
+
+  slack:
+    handler: handler.slack_handler
+    environment:
+      verification_token: ${file(config.json):handler.slack.verification_token}
+      available_processes: ${file(config.json):handler.slack.available_processes}
+    events:
+      - http:
+          path: uipath-webhook-receiver/slack
           method: post

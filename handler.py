@@ -9,11 +9,14 @@ trans = gettext.translation(
     'messages', localedir='locale', languages=languages, fallback=True)
 trans.install()
 
+
 def monitoring(func):
     def decorate(event, context):
         log = logging.getLogger()
         log.setLevel(logging.DEBUG)
         log.debug("Received event {}".format(json.dumps(event)))
+        log.debug("Received body {}".format(
+            json.dumps(json.loads(event["body"]))))
         response = func(event, context)
         log.debug("Response {}".format(json.dumps(response)))
         return response
@@ -36,16 +39,16 @@ def github_handler(event, context):
 
 
 @monitoring
-def hagout_chat_handler(event, context):
-    import handlers.hangout_chat
-    response = handlers.hangout_chat.handler(event, context)
+def google_hangouts_handler(event, context):
+    import handlers.google_hangouts
+    response = handlers.google_hangouts.handler(event, context)
     return response
 
 
 @monitoring
-def http_handler(event, context):
-    import handlers.http
-    response = handlers.http.handler(event, context)
+def html_form_handler(event, context):
+    import handlers.html_form
+    response = handlers.html_form.handler(event, context)
     return response
 
 
@@ -57,7 +60,14 @@ def iot_button_handler(event, context):
 
 
 @monitoring
-def slash_command_handler(event, context):
-    import handlers.slash_command
-    response = handlers.slash_command.handler(event, context)
+def orchestrator_handler(event, context):
+    import handlers.orchestrator
+    response = handlers.orchestrator.handler(event, context)
+    return response
+
+
+@monitoring
+def slack_handler(event, context):
+    import handlers.slack
+    response = handlers.slack.handler(event, context)
     return response

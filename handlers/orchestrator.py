@@ -4,12 +4,12 @@ import hmac
 import json
 import os
 import uipath
-from hashlib import sha1, sha256
+from hashlib import sha256
 
 
-def verify_signature(secret, msg, signature, digest):
-    mac = hmac.new(secret.encode(), msg=msg.encode(), digestmod=eval(digest))
-    return hmac.compare_digest(str(mac.hexdigest()), str(signature))
+def verify_signature(secret, msg, signature):
+    mac = hmac.new(secret, msg=msg, digestmod=sha256)
+    return hmac.compare_digest(str(mac.digest()), str(signature))
 
 
 def handler(event, context):
@@ -23,11 +23,11 @@ def handler(event, context):
         }
         return response
 
-    if os.environ["secret"] or "X-Hub-Signature" in event["headers"]:
+    if os.environ["secret"] or "X-UIPATH-Signature" in event["headers"]:
         secret = os.environ["secret"]
-        digest, signature = event["headers"]["X-Hub-Signature"].split("=")
-        msg = str(event["body"])
-        if not verify_signature(secret, msg, signature, digest):
+        signature = event["headers"]["X-UIPATH-Signature"].decode('base64')
+        msg = event["body"].encode('utf-8')
+        if not verify_signature(secret, msg, signature):
             response = {
                 "statusCode": 403,
                 "body": json.dumps({
@@ -36,9 +36,12 @@ def handler(event, context):
             }
             return response
 
-    event_type = event['headers']['X-GitHub-Event']
     payload = json.loads(event["body"])
+    type = payload["Type"]
+    event_id = payload["EventId"]
+    timestamp = payload["Timestamp"]
 
-    message = uipath.start_jobs(process_name)
+    #    message = uipath.start_jobs(process_name)
+    message = "id = 100"
     response = {"statusCode": 200, "body": json.dumps({"message": message})}
     return response

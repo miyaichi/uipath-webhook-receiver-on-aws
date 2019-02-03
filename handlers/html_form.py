@@ -6,6 +6,7 @@ import os
 import uipath
 from urlparse import parse_qs
 
+
 def handler(event, context):
     languages = [os.environ["language"]]
     if "Accept-Language" in event["headers"]:

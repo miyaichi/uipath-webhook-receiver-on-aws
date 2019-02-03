@@ -71,22 +71,34 @@ $ cat config.json
         "queue_name": ""
     },
 
-    "backlog": {
-        "process_name": ""
-    },
+    "handler": {
+            "backlog": {
+            "process_name": ""
+        },
 
-    "hangout": {
-        "verification_token": "",
-        "available_processes": ""
-    },
+        "github": {
+            "secret": "",
+            "process_name": ""
+        },
 
-    "http": {
-        "available_processes": ""
-    },
+        "google_hangouts": {
+            "verification_token": "",
+            "available_processes": ""
+        },
 
-    "slack": {
-        "verification_token": "",
-        "available_processes": ""
+        "html_form": {
+            "available_processes": ""
+        },
+
+        "orchestrator": {
+            "secret": "",
+            "process_name": ""
+        },
+
+        "slack": {
+            "verification_token": "",
+            "available_processes": ""
+        }
     }
 }
 ```
@@ -126,8 +138,10 @@ $ cat config.json
 ## backlog
 
 ```
-"backlog": {
-    "process_name": ""
+"handler": {
+    "backlog": {
+        "process_name": ""
+    }
 }
 ```
 
@@ -138,9 +152,11 @@ $ cat config.json
 ### Github
 
 ```
-"github": {
-    "secret": "",
-    "process_name": ""
+"handler": {
+    "github": {
+        "secret": "",
+        "process_name": ""
+    }
 }
 ```
 
@@ -152,9 +168,11 @@ $ cat config.json
 ### Google Hangouts Chat
 
 ```
-"hangout": {
-    "verification_token": "",
-    "available_processes": ""
+"handler": {
+    "google_hangouts": {
+        "verification_token": "",
+        "available_processes": ""
+    }
 }
 ```
 
@@ -163,11 +181,13 @@ $ cat config.json
 | verification_token  | 確認トークン                             |
 | available_processes | 有効なプロセス名リスト（カンマ区切り）   |
 
-### http
+### HTML form
 
 ```
-"http": {
-    "available_processes": ""
+"handler": {
+    "html_form": {
+        "available_processes": ""
+    }
 }
 ```
 
@@ -175,12 +195,30 @@ $ cat config.json
 | ------------------- | -------------------------------------- |
 | available_processes | 有効なプロセス名リスト（カンマ区切り） |
 
+### Orchestrator
+
+```
+"handler": {
+    "orchestrator": {
+        "secret": "",
+        "process_name": ""
+    }
+}
+```
+
+| Name         | Description                                     |
+| ------------ | ----------------------------------------------- |
+| secret       | Webhook登録時に設定したsecret                   |
+| process_name | OrchestratorのWebhookを受信後、起動するプロセス |
+
 ### Slack
 
 ```
-"slack": {
-    "verification_token": "",
-    "available_processes": ""
+"handler": {
+    "slack": {
+        "verification_token": "",
+        "available_processes": ""
+    }
 }
 ```
 
