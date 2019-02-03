@@ -41,7 +41,5 @@ def handler(event, context):
     event_id = payload["EventId"]
     timestamp = payload["Timestamp"]
 
-    #    message = uipath.start_jobs(process_name)
-    message = "id = 100"
     response = {"statusCode": 200, "body": json.dumps({"message": message})}
     return response
