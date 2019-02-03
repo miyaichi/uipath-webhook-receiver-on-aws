@@ -6,7 +6,7 @@ import os
 
 languages = [os.environ["language"]]
 trans = gettext.translation(
-    'messages', localedir='locale', languages=languages, fallback=True)
+    "messages", localedir="locale", languages=languages, fallback=True)
 trans.install()
 
 

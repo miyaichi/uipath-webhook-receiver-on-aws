@@ -15,18 +15,33 @@
       color: #bdbdbd;
       font-weight: 300;
     }
+    .processlist {
+      display: inline-block;
+      text-align: left;
+    }
+    .process {
+      margin: 3px;
+      border: 1px transparent solid;
+    } 
+    .process:hover { 
+      background-color: lightyellow; 
+      border: 1px gray solid; 
+    }
   </style>
 </head>
 <body>
 
 <h1>Start Job</h1>
+
 <form action="{{ url }}" method="POST">
   <p>{{ _("Please select process to start") }}</p>
-  <select name="process_name" size="5">
-    {% for process in available_processes %}
-      <option value="{{ process }}">{{ process }}</option>
-    {% endfor %}
-  </select>
+
+  <div class="processlist"> 
+  {% for process in available_processes %}
+    <div class="process"><input type="radio" name="process" value="{{ process }}" />{{ process }}</div>
+  {% endfor %}
+  </div>
+
   <p><input type="submit" value="Start"><p>
 </form>
 

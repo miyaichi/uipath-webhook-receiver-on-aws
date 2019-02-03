@@ -72,29 +72,24 @@ $ cat config.json
     },
 
     "handler": {
-            "backlog": {
+        "backlog": {
             "process_name": ""
         },
-
         "github": {
             "secret": "",
             "process_name": ""
         },
-
         "google_hangouts": {
             "verification_token": "",
             "available_processes": ""
         },
-
         "html_form": {
             "available_processes": ""
         },
-
         "orchestrator": {
             "secret": "",
             "process_name": ""
         },
-
         "slack": {
             "verification_token": "",
             "available_processes": ""
@@ -102,7 +97,6 @@ $ cat config.json
     }
 }
 ```
-
 
 ### language
 
