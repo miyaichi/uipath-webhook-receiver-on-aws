@@ -90,7 +90,20 @@ $ cat config.json
     }
 }
 ```
+
+
 ### language
+
+```
+"language": "ja"
+```
+
+| Name     | Description          |
+| -------- | -------------------- |
+| language | メッセージの表示言語 |
+
+### orchestrator
+
 ```
 "orchestrator": {
     "url": "",
@@ -102,17 +115,15 @@ $ cat config.json
 }
 ```
 
-### orchestrator
+| Name         | Description |
+| ------------ | ----------- |
+| url          | URL |
+| tenancy_name | テナント名 |
+| username     | ユーザー名 |
+| password     | パスワード |
+| api_key      | API Key |
 
-```
-"language": "ja"
-```
-
-| Name     | Description          |
-| -------- | -------------------- |
-| language | メッセージの表示言語 |
-
-### backlog
+## backlog
 
 ```
 "backlog": {
