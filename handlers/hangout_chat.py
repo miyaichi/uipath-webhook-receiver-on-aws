@@ -12,8 +12,8 @@ def handler(event, context):
     token = body["token"]
     if token != os.environ["verification_token"]:
         response = {
-            "statusCode": 200,
-            "body": json.dumps({
+            "statusCode": 403,
+            "error": json.dumps({
                 "text": _("Request token does not match")
             })
         }

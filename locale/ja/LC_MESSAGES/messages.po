@@ -41,5 +41,8 @@ msgstr "リリースが見つかりません"
 msgid "Request token does not match"
 msgstr "リクエストトークンが一致しません"
 
+msgid "Secret and Signature mismatch"
+msgstr "シークレットとシグネチャーが一致しません"
+
 msgid "This webhook was ignored"
 msgstr "このwebhookは無視しました"

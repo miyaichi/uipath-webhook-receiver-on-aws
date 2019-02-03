@@ -26,6 +26,16 @@ functions:
           path: uipath-webhook-receiver/backlog
           method: post
 
+  github:
+    handler: handler.github_handler
+    environment:
+      secret: ${file(config.json):github.secret}
+      process_name: ${file(config.json):github.process_name}
+    events:
+      - http:
+          path: uipath-webhook-receiver/github
+          method: post
+  
   hagout_chat:
     handler: handler.hagout_chat_handler
     environment:

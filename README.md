@@ -26,7 +26,10 @@ HTMLフォームをGET/POSTすることで、Orchestratorからジョブを起�
 
 ![Use Case #4](https://user-images.githubusercontent.com/129797/51886570-ac760c80-23d3-11e9-9708-c313aaee4c94.png)
 
-## Path to deploy
+### Version Control System Integration
+ユーザーがバージョンコントロールシステムでアクションした際にWebhookを発生させ、それをトリガーとしてOrchestratorからジョブを起動します。gitのpull requestを受信してレビュー準備をすることや、pushを受信してリリースの準備をすることができます。
+
+## Setting
 
 * install serverless framework
 ```console
@@ -120,6 +123,20 @@ $ cat config.json
 | Name         | Description                                |
 | ------------ | ------------------------------------------ |
 | process_name | BacklogのWebhookを受信後、起動するプロセス |
+
+### Github
+
+```
+"github": {
+    "secret": "",
+    "process_name": ""
+}
+```
+
+| Name         | Description                               |
+| ------------ | ----------------------------------------- |
+| secret       | Webhook登録時に設定したsecret             |
+| process_name | GithubのWebhookを受信後、起動するプロセス |
 
 ### Google Hangouts Chat
 

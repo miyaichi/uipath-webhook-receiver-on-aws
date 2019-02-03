@@ -29,6 +29,13 @@ def backlog_handler(event, context):
 
 
 @monitoring
+def github_handler(event, context):
+    import handlers.github
+    response = handlers.github.handler(event, context)
+    return response
+
+
+@monitoring
 def hagout_chat_handler(event, context):
     import handlers.hangout_chat
     response = handlers.hangout_chat.handler(event, context)

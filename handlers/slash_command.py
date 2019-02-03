@@ -12,7 +12,7 @@ def handler(event, context):
     token = params["token"][0]
     if token != os.environ["verification_token"]:
         message = _("Request token does not match")
-        response = {"statusCode": 200, "body": message}
+        response = {"statusCode": 403, "error": message}
         return response
 
     process_name = None
