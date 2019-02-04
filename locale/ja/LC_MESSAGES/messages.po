@@ -35,6 +35,9 @@ msgstr "開始したいプロセスを選んでください"
 msgid "process_name not found"
 msgstr "process_nameが見つかりません"
 
+msgid "Process not found"
+msgstr "プロセスが見つかりません"
+
 msgid "Relasse not found"
 msgstr "リリースが見つかりません"
 
