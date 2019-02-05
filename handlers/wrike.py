@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+import gettext
+import hmac
 import json
 import os
 import uipath
+from hashlib import sha256
 
 # To enable event, uncomment the dictionary items below
 valid_events = {
@@ -78,6 +81,11 @@ valid_events = {
 }
 
 
+def verify_signature(secret, msg, signature):
+    mac = hmac.new(secret.encode(), msg=msg.encode(), digestmod=sha256)
+    return hmac.compare_digest(str(mac.hexdigest()), str(signature))
+
+
 def handler(event, context):
     process_name = os.environ["process_name"]
     if (not process_name):
@@ -89,6 +97,41 @@ def handler(event, context):
         }
         return response
 
+    if os.environ["secret"] or "X-Hook-Secret" in event["headers"]:
+        secret = os.environ["secret"]
+        digest, signature = event["headers"]["X-Hook-Secret"].split("=")
+        msg = str(event["body"])
+        if not verify_signature(secret, msg, signature):
+            response = {
+                "statusCode": 403,
+                "body": json.dumps({
+                    "error": _("Secret and Signature mismatch")
+                })
+            }
+            return response
+
     events = json.loads(event["body"])
     if isinstance(events, dict):
         events = [events]
+
+    issues = []
+    for event in events:
+        if event["eventType"] in valid_events:
+            issues.append({
+                "webhookId": event["webhookId"],
+                "eventType": event["eventType"]
+            })
+    issues = list(set(issues))
+
+    if len(issues) == 0:
+        response = {
+            "statusCode": 200,
+            "body": json.dumps({
+                "message": _("This webhook was ignored")
+            })
+        }
+        return response
+
+    message = uipath.start_jobs(process_name)
+    response = {"statusCode": 200, "body": json.dumps({"message": message})}
+    return response
