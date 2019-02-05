@@ -32,6 +32,10 @@
         "slack": {
             "verification_token": "",
             "available_processes": ""
+        },
+        "wrike": {
+            "secret": "",
+            "available_processes": ""
         }
     }
 }

@@ -72,3 +72,10 @@ def slack_handler(event, context):
     import handlers.slack
     response = handlers.slack.handler(event, context)
     return response
+
+
+@monitoring
+def wrike_handler(event, context):
+    import handlers.slack
+    response = handlers.wrike.handler(event, context)
+    return response

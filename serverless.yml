@@ -80,3 +80,13 @@ functions:
       - http:
           path: uipath-webhook-receiver/slack
           method: post
+
+  wrike:
+    handler: handler.wrike_handler
+    environment:
+      secret: ${file(config.json):handler.wrike.secret}
+      process_name: ${file(config.json):handler.wrike.process_name}
+    events:
+      - http:
+          path: uipath-webhook-receiver/wrike
+          method: post

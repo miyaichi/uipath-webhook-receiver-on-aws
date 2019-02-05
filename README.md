@@ -94,6 +94,10 @@ $ cat config.json
             "verification_token": "",
             "available_processes": ""
         }
+        "wrike": {
+            "secret": "",
+            "available_processes": ""
+        }
     }
 }
 ```
@@ -221,9 +225,26 @@ $ cat config.json
 | verification_token  | slack app の verification token        |
 | available_processes | 有効なプロセス名リスト（カンマ区切り） |
 
+### Wrike
+
+```
+"handler": {
+    "wrike": {
+        "secret": "",
+        "process_name": ""
+    }
+}
+```
+
+| Name         | Description                               |
+| ------------ | ----------------------------------------- |
+| secret       | Webhook登録時に設定したsecret             |
+| process_name | WrikeのWebhookを受信後、起動するプロセス |
+
 ## To Do
+
+* Wrike integration test
 
 * Chatwork integration
 * ServiceNow integration
-* Wrike integration
 * Orchestrator Queue integration
