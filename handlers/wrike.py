@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 import gettext
 import hmac
 import json
@@ -6,34 +6,34 @@ import os
 import uipath
 from hashlib import sha256
 
-# To enable event, uncomment the dictionary items below
+#To enable event, uncomment the dictionary items below
 valid_events = {
     "TaskCreated":
     "Fired when a user creates a new task",
-    "TaskDeleted":
-    "Fired whena task is deleted",
-    "TaskTitleChanged":
-    "Fired when a task title changes",
+#   "TaskDeleted":
+#   "Fired whena task is deleted",
+#   "TaskTitleChanged":
+#   "Fired when a task title changes",
     "TaskImportanceChanged":
     "Fired when a task importance changes",
     "TaskStatusChanged":
     "Fired when a task status changes",
     "TaskDatesChanged":
     "Fired when start, finish dates, duration, or the “Work on weekends” flag is changes",
-    "TaskParentsAdded":
-    "Fired when a task is added to a folder",
-    "TaskParentsRemoved":
-    "Fired when a task is removed from a folder",
+#   "TaskParentsAdded":
+#   "Fired when a task is added to a folder",
+#   "TaskParentsRemoved":
+#   "Fired when a task is removed from a folder",
     "TaskResponsiblesAdded":
     "Fired when any new assignee is added to a task, including all Wrike users (and collaborators) and users with pending invitations",
-    "TaskResponsiblesRemoved":
-    "Fired when someone is unassigned from a task",
-    "TaskSharedsAdded":
-    "Fired when a task is shared",
-    "TaskSharedsRemoved":
-    "Fired when a task is unshared",
-    "TaskDescriptionChanged":
-    "Fired when a task’s description is changed. Note: Notifications related to description field changes are fired with approximately a 5-minute delay.",
+#   "TaskResponsiblesRemoved":
+#   "Fired when someone is unassigned from a task",
+#   "TaskSharedsAdded":
+#   "Fired when a task is shared",
+#   "TaskSharedsRemoved":
+#   "Fired when a task is unshared",
+#   "TaskDescriptionChanged":
+#   "Fired when a task’s description is changed. Note: Notifications related to description field changes are fired with approximately a 5-minute delay.",
     "TaskCustomFieldChanged":
     "Fired when a custom field value on a custom field is changed",
     "AttachmentAdded":
@@ -46,38 +46,38 @@ valid_events = {
     "Fired when a comment is deleted",
     "TimelogChanged":
     "Fired when a timelog record is added, updated, or removed",
-    "FolderCreated":
-    "Fired when a folder or project is created",
-    "FolderDeleted":
-    "Fired when a folder or project is deleted",
-    "FolderTitleChanged":
-    "Fired when a user changes the title of a folder or project",
-    "FolderParentsAdded":
-    "Fired when a folder or project is added to another folder",
-    "FolderParentsRemoved":
-    "Fired when a folder or project is removed from another folder",
-    "FolderSharedsAdded":
-    "Fired when a folder or project is shared",
-    "FolderSharedsRemoved":
-    "Fired when a folder or project is unshared",
-    "FolderDescriptionChanged":
-    "Fired when a user changes the description of a folder or project",
-    "FolderCommentAdded":
-    "Fired when a comment is added to a folder or project",
-    "FolderCommentDeleted":
-    "Fired when a comment is removed from a folder or project",
-    "FolderAttachmentAdded":
-    "Fired when an attachment is added to a folder or project",
-    "FolderAttachmentDeleted":
-    "Fired when an attachment is removed from a folder or project",
-    "FolderCustomFieldChanged":
-    "Fired when a custom field value is changed for folder or project",
-    "ProjectDatesChanged":
-    "Fired when the start or end dates of a project are changed",
-    "ProjectOwnersAdded":
-    "Fired when any new owner is assigned to a project, including all Wrike users (and Collaborators) and users with pending invitations",
-    "ProjectOwnersRemoved":
-    "Fired when an owner is unassigned from a project"
+#   "FolderCreated":
+#   "Fired when a folder or project is created",
+#   "FolderDeleted":
+#   "Fired when a folder or project is deleted",
+#   "FolderTitleChanged":
+#   "Fired when a user changes the title of a folder or project",
+#   "FolderParentsAdded":
+#   "Fired when a folder or project is added to another folder",
+#   "FolderParentsRemoved":
+#   "Fired when a folder or project is removed from another folder",
+#   "FolderSharedsAdded":
+#   "Fired when a folder or project is shared",
+#   "FolderSharedsRemoved":
+#   "Fired when a folder or project is unshared",
+#   "FolderDescriptionChanged":
+#   "Fired when a user changes the description of a folder or project",
+#   "FolderCommentAdded":
+#   "Fired when a comment is added to a folder or project",
+#   "FolderCommentDeleted":
+#   "Fired when a comment is removed from a folder or project",
+#   "FolderAttachmentAdded":
+#   "Fired when an attachment is added to a folder or project",
+#   "FolderAttachmentDeleted":
+#   "Fired when an attachment is removed from a folder or project",
+#   "FolderCustomFieldChanged":
+#   "Fired when a custom field value is changed for folder or project",
+#   "ProjectDatesChanged":
+#   "Fired when the start or end dates of a project are changed",
+#   "ProjectOwnersAdded":
+#   "Fired when any new owner is assigned to a project, including all Wrike users (and Collaborators) and users with pending invitations",
+#   "ProjectOwnersRemoved":
+#   "Fired when an owner is unassigned from a project"
 }
 
 
@@ -99,7 +99,7 @@ def handler(event, context):
 
     if os.environ["secret"] or "X-Hook-Secret" in event["headers"]:
         secret = os.environ["secret"]
-        digest, signature = event["headers"]["X-Hook-Secret"].split("=")
+        signature = event["headers"]["X-Hook-Secret"]
         msg = str(event["body"])
         if not verify_signature(secret, msg, signature):
             response = {
@@ -114,15 +114,15 @@ def handler(event, context):
     if isinstance(events, dict):
         events = [events]
 
-    issues = []
+    accepted_events = []
     for event in events:
         if event["eventType"] in valid_events:
-            issues.append({
+            accepted_events.append({
                 "webhookId": event["webhookId"],
                 "eventType": event["eventType"]
             })
 
-    if len(issues) == 0:
+    if len(accepted_events) == 0:
         response = {
             "statusCode": 200,
             "body": json.dumps({
