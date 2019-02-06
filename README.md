@@ -9,7 +9,7 @@
 
 起動されたジョブでは、追加・更新されたチケットの内容を取得し処理すべき内容であれば処理を行った後チケットを更新し、チケットの内容に不備があれば差し戻します。
 
-![Use Case #1](https://user-images.githubusercontent.com/129797/52317593-01cda180-2a04-11e9-8661-f474edd45795.png)
+![Use Case #1](https://user-images.githubusercontent.com/129797/52317889-5291ca00-2a05-11e9-8ccf-6e531d37cec9.png)
 
 ### Chat Service Integration
 ユーザーがチャットサービスでジョブの起動を依頼し、それをボットで検知してOrchestratorからジョブを起動します。起動したいプロセスをユーザーが自身で指定することで、タイムリーなサービス提供が可能となります。
