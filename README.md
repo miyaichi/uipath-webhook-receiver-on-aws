@@ -9,25 +9,32 @@
 
 起動されたジョブでは、追加・更新されたチケットの内容を取得し処理すべき内容であれば処理を行った後チケットを更新し、チケットの内容に不備があれば差し戻します。
 
-![Use Case #1](https://user-images.githubusercontent.com/129797/51825579-6a43c100-2328-11e9-821f-18784398d09b.png)
+![Use Case #1](https://user-images.githubusercontent.com/129797/52317593-01cda180-2a04-11e9-8661-f474edd45795.png)
 
 ### Chat Service Integration
 ユーザーがチャットサービスでジョブの起動を依頼し、それをボットで検知してOrchestratorからジョブを起動します。起動したいプロセスをユーザーが自身で指定することで、タイムリーなサービス提供が可能となります。
 
-![Use Case #2](https://user-images.githubusercontent.com/129797/51886557-a6802b80-23d3-11e9-9e9d-fc89ebc4d6e1.png)
+![Use Case #2](https://user-images.githubusercontent.com/129797/52317622-1c077f80-2a04-11e9-980a-55c1410540b7.png)
 
 ### IoT Enterprise Button Integration
 ユーザーに渡したAWS IoT Enterprise Buttonを押すことで、Orchestratorからジョブを起動します。ボタンを押すだけなので、操作が簡単であり、また、物理的なデバイスとジョブの起動権限を紐づけているので、権限管理がやりやすいです。
 
-![Use Case #3](https://user-images.githubusercontent.com/129797/52123230-cbd99780-2668-11e9-8f90-704778b81d72.png)
+![Use Case #3](https://user-images.githubusercontent.com/129797/52317642-2c1f5f00-2a04-11e9-8bc4-2d6a18220126.png)
 
 ### HTML Form Integration
 HTMLフォームをGET/POSTすることで、Orchestratorからジョブを起動します。起動できるプロセス、起動する権限をWebページのアクセス権限と連動して管理することができます。
 
-![Use Case #4](https://user-images.githubusercontent.com/129797/51886570-ac760c80-23d3-11e9-9708-c313aaee4c94.png)
+![Use Case #4](https://user-images.githubusercontent.com/129797/52317655-3a6d7b00-2a04-11e9-8868-b4708a2942a0.png)
 
 ### Version Control System Integration
 ユーザーがバージョンコントロールシステムでアクションした際にWebhookを発生させ、それをトリガーとしてOrchestratorからジョブを起動します。gitのpull requestを受信してレビュー準備をすることや、pushを受信してリリースの準備をすることができます。
+
+![Use Case #5](https://user-images.githubusercontent.com/129797/52317664-48230080-2a04-11e9-913c-136bbfd0a30f.png)
+
+### Orchestrator
+少しわかりにくいですが、OrchestratorのWebhookを受信して、それをトリガーとしてOrchestratorからジョブを起動します。Orchestratorの設定情報やQueue、Jobの状態を受けて処理を行うことができます。
+
+![Use Case #6](https://user-images.githubusercontent.com/129797/52317679-58d37680-2a04-11e9-9a37-eddaa776913c.png)
 
 ## Setting
 
