@@ -15,17 +15,32 @@
       color: #bdbdbd;
       font-weight: 300;
     }
-    .processlist {
-      display: inline-block;
-      text-align: left;
+    .column {
+      flex-direction: column;                                                       
+      display: inline-flex; 
     }
-    .process {
-      margin: 3px;
-      border: 1px transparent solid;
-    } 
-    .process:hover { 
-      background-color: lightyellow; 
-      border: 1px gray solid; 
+    .column input[type="radio"] {
+      display: none;
+    }
+    .column label {
+      background-color: #f6f6f6;
+      text-align: center;
+      display: inline-block;
+      padding: 5px 10px;
+      margin: 5px;
+    }
+    .column label:hover {
+      background-color: #eeeeee;
+      cursor: pointer;
+    }
+    .column input[type="radio"]:checked + label {
+      background-color: #b2b2b2;
+    }
+    .column #start {
+      background-color: #b2b2b2;
+      font-size: 1em;    
+      padding: 5px;
+      margin: 5px;
     }
   </style>
 </head>
@@ -36,13 +51,13 @@
 <form action="{{ url }}" method="POST">
   <p>{{ _("Please select process to start") }}</p>
 
-  <div class="processlist"> 
-  {% for process in available_processes %}
-    <div class="process"><input type="radio" name="process" value="{{ process }}" />{{ process }}</div>
-  {% endfor %}
+  <div class="column">
+    {% for process in available_processes %}
+      <input type="radio" name="process_name" value="{{ process }}" id="{{ process }}" />
+      <label for="{{ process }}">{{ process }}</label>
+    {% endfor %}
+    <input type="submit" value="Start" id="start">
   </div>
-
-  <p><input type="submit" value="Start"><p>
 </form>
 
 </body>

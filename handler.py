@@ -12,12 +12,14 @@ trans.install()
 
 def monitoring(func):
     def decorate(event, context):
-        log = logging.getLogger()
-        log.setLevel(logging.DEBUG)
-        log.debug("Received event {}".format(json.dumps(event)))
-        if event["body"]:
+        try:
+            log = logging.getLogger()
+            log.setLevel(logging.DEBUG)
+            log.debug("Received event {}".format(json.dumps(event)))
             log.debug("Received body {}".format(
                 json.dumps(json.loads(event["body"]))))
+        except:
+            pass
         response = func(event, context)
         log.debug("Response {}".format(json.dumps(response)))
         return response

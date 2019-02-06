@@ -27,7 +27,6 @@ def handler(event, context):
             "issue_id": activity["id"],
             "type_id": activity["type"]
         })
-    issues = list(set(issues))
 
     if len(issues) == 0:
         response = {

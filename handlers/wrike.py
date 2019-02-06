@@ -121,7 +121,6 @@ def handler(event, context):
                 "webhookId": event["webhookId"],
                 "eventType": event["eventType"]
             })
-    issues = list(set(issues))
 
     if len(issues) == 0:
         response = {
