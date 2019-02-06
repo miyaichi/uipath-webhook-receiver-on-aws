@@ -77,6 +77,7 @@ class orchestrator:
             self.url + "/odata/Releases", headers=headers, params=params)
         if response.status_code == 200:
             if response.json()["@odata.count"] > 0:
+                self.process_name = process_name
                 self.release_key = response.json()["value"][0]["Key"]
             else:
                 self.message = _("Relasse not found")
