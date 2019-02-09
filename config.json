@@ -7,7 +7,7 @@
         "username": "",
         "password": "",
         "api_key": "",
-        "queue_name": ""
+        "ntlm_authentication": "False"
     },
 
     "handler": {

@@ -23,6 +23,9 @@ msgstr "{} を開始できません。メッセージは {} です"
 msgid "{} failed"
 msgstr "{} が失敗しました"
 
+msgid "{} not found"
+msgstr "{} が見つかりません"
+
 msgid "{} started. Job ID is {}"
 msgstr "{} を開始しました。ジョブIDは {} です"
 
@@ -34,12 +37,6 @@ msgstr "開始したいプロセスを選んでください"
 
 msgid "process_name not found"
 msgstr "process_nameが見つかりません"
-
-msgid "Process not found"
-msgstr "プロセスが見つかりません"
-
-msgid "Relasse not found"
-msgstr "リリースが見つかりません"
 
 msgid "Request token does not match"
 msgstr "リクエストトークンが一致しません"

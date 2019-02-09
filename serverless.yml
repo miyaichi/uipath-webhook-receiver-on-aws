@@ -11,7 +11,7 @@ provider:
     orchestrator_username: ${file(config.json):orchestrator.username}
     orchestrator_password: ${file(config.json):orchestrator.password}
     orchestrator_api_key: ${file(config.$son):orchestrator.api_key}
-    orchestrator_queue_name: ${file(config.json):orchestrator.queue_name}
+    orchestrator_ntlm_authentication: ${file(config.json):orchestrator.ntlm_authentication}
 
 plugins:
   - serverless-python-requirements

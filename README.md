@@ -75,7 +75,7 @@ $ cat config.json
         "username": "",
         "password": "",
         "api_key": "",
-        "queue_name": ""
+        "ntlm_authentication": "False"
     },
 
     "handler": {
@@ -128,17 +128,18 @@ $ cat config.json
     "username": "",
     "password": "",
     "api_key": "",
-    "queue_name": ""
+    "ntlm_authentication": "False"
 }
 ```
 
-| Name         | Description |
-| ------------ | ----------- |
-| url          | URL |
-| tenancy_name | テナント名 |
-| username     | ユーザー名 |
-| password     | パスワード |
-| api_key      | API Key |
+| Name                | Description                                     |
+| ------------------- | ----------------------------------------------- |
+| url                 | URL                                             |
+| tenancy_name        | テナント名                                      |
+| username            | ユーザー名                                      |
+| password            | パスワード                                      |
+| api_key             | API Key                                         |
+| ntlm_authentication | Windows 認証を有効にしていればTrue (True/False) |
 
 ## backlog
 
