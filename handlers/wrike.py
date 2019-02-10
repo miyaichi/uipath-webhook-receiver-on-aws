@@ -92,7 +92,7 @@ def handler(event, context):
         response = {
             "statusCode": 200,
             "body": json.dumps({
-                "message": "process name not found"
+                "message": _("process_name not found")
             })
         }
         return response
