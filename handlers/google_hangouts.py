@@ -19,6 +19,15 @@ def handler(event, context):
         }
         return response
 
+    if body["type"] != "MESSAGE":
+        response = {
+            "statusCode": 200,
+            "body": json.dumps({
+                "message": _("This webhook was ignored")
+            })
+        }
+        return response
+
     process_name = body["message"]["argumentText"].strip()
     available_processes = [
         s.strip() for s in os.environ["available_processes"].split(',')
