@@ -1,0 +1,41 @@
+{
+    "language": "ja",
+
+    "orchestrator": {
+        "url": "",
+        "tenancy_name": "",
+        "username": "",
+        "password": "",
+        "api_key": "",
+        "ntlm_authentication": "False"
+    },
+
+    "handler": {
+        "backlog": {
+            "process_name": ""
+        },
+        "github": {
+            "secret": "",
+            "process_name": ""
+        },
+        "google_hangouts": {
+            "verification_token": "",
+            "available_processes": ""
+        },
+        "html_form": {
+            "available_processes": ""
+        },
+        "orchestrator": {
+            "secret": "",
+            "process_name": ""
+        },
+        "slack": {
+            "verification_token": "",
+            "available_processes": ""
+        },
+        "wrike": {
+            "secret": "",
+            "available_processes": ""
+        }
+    }
+}

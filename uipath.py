@@ -26,6 +26,15 @@ def start_jobs(process_name):
     return message
 
 
+def alerts(filter):
+    o = orchestrator()
+    if o.account_authenticate():
+        odata = o.get_odata("/odata/Alerts", filter)
+        if odata:
+            return odata["value"], None
+    return None, o.message
+
+
 def jobs(filter):
     o = orchestrator()
     if o.account_authenticate():

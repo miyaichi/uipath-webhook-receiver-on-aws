@@ -36,7 +36,7 @@ HTMLフォームをGET/POSTすることで、Orchestratorからジョブを起�
 
 ![Use Case #6](https://user-images.githubusercontent.com/129797/52317679-58d37680-2a04-11e9-9a37-eddaa776913c.png)
 
-## Setting
+## Deploy
 
 * install serverless framework
 ```console
@@ -60,12 +60,56 @@ $ vim congig.json
 $ serverless deploy [--stage production]
 ```
 
+### Backlog
+
+### Github
+
+* Githubで対象とするリポジトリの Setting / Webhooks / Add Webhook を選択します。
+* 以下を設定してWebhookを登録します。
+    * Payload URL: 作成したGithub用のEndpointを設定します。
+    * Secret: Webhookメッセージのダイジェストを作成するためのSecret。config.[stage].jsonにも同じ値を設定します。
+    * Which events would you like to trigger this webhook?: Webhookを送信するトリガーを設定します。
+
+参考：[Webhooks](https://developer.github.com/webhooks/)
+
+### Google Hangouts
+
+* Google Cloud ConsoleでHangouts Chat APIを有効にします。
+* Hangouts Chat APIの設定で以下を設定します。
+    * Bot Name: Orchestrator-Webhook-Receiver
+    * Avator URL: https://www.uipath.com/hubfs/Valentin/Brand%20Kit/logos/UiPath-icon.png
+    * Description: Run the job with unattended robot
+    * Bot URL: 作成したGoogle Hangouts用のEndpointを設定します。
+    * Verification Token: Webhookの発信元を確認するためのToken。config.[stage].jsonにも同じ値を設定します。
+
+参考：[Chatbot Concepts](https://developers.google.com/hangouts/chat/concepts/bots)
+
+### HTML Form
+
+* templates/request.tpl.html, templates/response.tpl.htmlを編集します。テンプレートエンジンはjinjaを利用しています。
+* LocaleはアクセスしたブラウザのRequest Headerで判断しますので、Localeを追加する場合は、localeフォルダにロケール情報を用意してください。
+
+参考：[jinja](http://jinja.pocoo.org/)
+
+### IoT Buttion
+
+### Orchestrator
+
+* Orchestratorで User / Webhook を選択します。
+* 以下を設定してWebhookを登録します。
+    * URL: 作成したOrchestrator用のEndpointを設定します。
+    * Secret: Webhookメッセージのダイジェストを作成するためのSecret。config.[stage].jsonにも同じ値を設定します。
+    * Event Type: Webhookを送信するトリガーを設定します。
+
+参考：[About Webhooks](https://orchestrator.uipath.com/lang-en/docs/about-webhooks)
+
+### Wrike
+
 ## Configuration
 
-設定はconfig.jsonに記載します。また、AWS Lambdaの環境変数設定で値を変更することができます。IoT Enterprise Buttonは、デバイスのプレイスメントの属性でプロセス名（属性の名前 process_name）を指定します。
+設定はconfig.[stage].jsonに記載します。また、AWS Lambdaの環境変数設定で値を変更することができます。IoT Enterprise Buttonは、デバイスのプレイスメントの属性でプロセス名（属性の名前 process_name）を指定します。
 
 ```
-$ cat config.json
 {
     "language": "ja",
 
@@ -252,7 +296,5 @@ $ cat config.json
 ## To Do
 
 * Wrike integration test
-
-* Chatwork integration
 * ServiceNow integration
 * Orchestrator Queue integration
