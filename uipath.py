@@ -11,8 +11,8 @@ from requests_ntlm import HttpNtlmAuth
 def start_jobs(process_name):
     o = orchestrator()
     if o.account_authenticate():
-        filter = "Name eq '{}'".format(process_name)
-        odata = o.get_odata("/odata/Releases", filter)
+        filters = "Name eq '{}'".format(process_name)
+        odata = o.get_odata("Releases", filters)
         if odata:
             release_key = odata["value"][0]["Key"]
             job_id = o.start_jobs(release_key)
@@ -26,19 +26,10 @@ def start_jobs(process_name):
     return message
 
 
-def alerts(filter):
+def get_odata(name, filters):
     o = orchestrator()
     if o.account_authenticate():
-        odata = o.get_odata("/odata/Alerts", filter)
-        if odata:
-            return odata["value"], None
-    return None, o.message
-
-
-def jobs(filter):
-    o = orchestrator()
-    if o.account_authenticate():
-        odata = o.get_odata("/odata/Jobs", filter)
+        odata = o.get_odata(name, filters)
         if odata:
             return odata["value"], None
     return None, o.message
@@ -84,21 +75,21 @@ class orchestrator:
         self.message = _("{} failed").format("/api/Account/Authenticate")
         return False
 
-    def get_odata(self, path, filter=None):
+    def get_odata(self, name, filters=None):
         params = {}
         if self.api_key:
             params["api_key"] = self.api_key
-        if filter:
-            params["$filter"] = filter
-        response = self.session.get(self.url + path, params=params)
+        if filters:
+            params["$filter"] = filters
+        response = self.session.get(self.url + "/odata/" + name, params=params)
         if response.status_code == 200:
             odata = response.json()
             if len(odata["value"]):
                 return odata
 
-            self.message = _("{} not found").format(path)
+            self.message = _("{} not found").format(name)
         else:
-            self.message = _("{} failed").format(path)
+            self.message = _("{} failed").format(name)
         return None
 
     def start_jobs(self, release_key):
