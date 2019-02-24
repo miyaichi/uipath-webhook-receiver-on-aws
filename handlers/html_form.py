@@ -28,6 +28,10 @@ def handler(event, context):
         params = parse_qs(event["body"])
         if "process_name" in params:
             process_name = params["process_name"][0]
+    elif event["queryStringParameters"] is not None:
+        params = event["queryStringParameters"]
+        if "process_name" in params:
+            process_name = params["process_name"]
 
     available_processes = [
         s.strip() for s in os.environ["available_processes"].split(',')

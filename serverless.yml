@@ -37,14 +37,14 @@ functions:
           path: uipath-webhook-receiver/github
           method: post
   
-  google_hagouts:
-    handler: handler.google_hagouts_handler
+  google_hangouts:
+    handler: handler.google_hangouts_handler
     environment:
       available_processes: ${file(config.${self:provider.stage}.json):handler.google_hangouts.available_processes}
-      token: ${file(config.${self:provider.stage}.json):handler.google_hangouts.verification_token}
+      verification_token: ${file(config.${self:provider.stage}.json):handler.google_hangouts.verification_token}
     events:
       - http:
-          path: uipath-webhook-receiver/google_hagouts
+          path: uipath-webhook-receiver/google_hangouts
           method: post
 
   html_form:
